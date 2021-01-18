@@ -1,0 +1,30 @@
+{# COMMENTAIRES TWIG 
+
+    {% %}  : balise twig
+
+    extends : permet de dire que la vue actuelle hérite d'une autre vue
+              le nom du fichier est donné à partir du dosser "templates"
+              Le contenu qui va être affiché par la vue parent doit être
+              dans une balise block
+
+    {% block nom_du_block %} {% endblock %}
+
+    {{ }}  : équivalent à la fonction echo de php <?= ?>
+    
+    parent() : la fonction parent() renvoie le contenu du même block mais dans le template parent
+                ensuite on peut afficher ce contenu en plaçant la fonction parent() entre {{ }}
+#}
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h2 style="color: red">Bonjour </h2>
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    Salutations
+{% endblock %}
+
+{% block h1 %}
+    Salutations
+{% endblock %}

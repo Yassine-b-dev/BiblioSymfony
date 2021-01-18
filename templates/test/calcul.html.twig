@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+{# symbole de la concaténation : ~ #}
+   <ul>
+       <li>{{ aa }} x {{ b }} = {{ aa * b }}</li>
+       <li>{{ aa ~ " / " ~ b ~ " = " ~ (aa / b) }}</li>
+       <li>{{ aa ~ " + " ~ b ~ " = " ~ (aa + b) }}</li>
+       <li>{{ aa ~ " - " ~ b ~ " = " ~ (aa - b) }}</li>
+   </ul>
+{% endblock %}
+
+{% block title %}
+    Calcul
+{% endblock %}
+
+{% block h1 %}
+    Résultat du calcul
+{% endblock %}

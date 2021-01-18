@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ livre is defined ? "Modifier un livre" : "Ajouter un livre"}}
+{% endblock %}
+
+{% block h1 %}
+    {{ livre is defined ? "Modifier le livre n°" ~ livre.id : "Ajouter un livre"}}
+{% endblock %}
+
+{% block body %}
+    {{form(formLivre)}}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre{% endblock %}
+{% block h1 %}Livre{% endblock %}
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ livre.auteur}}</td>
+            </tr>
+            <tr>
+                <th>Couverture</th>
+                <td>
+                    {% if livre.couverture is not null %}
+                        <img class="image_liste" src="{{ asset("img/") ~ livre.couverture }}" alt="Image de couverture">
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr colspan=2>
+                            <th>Emprunts</th>
+                            <th>Nb d'emprunts : {{livre.emprunts|length }}</th>
+                        </tr>
+                            <th>Livre</th>
+                            <th>Emprunté le</th>
+                            <th>Rendu le</th>
+                        </thead>
+                        <tbody>
+                            {% for emprunt in livre.emprunts %}
+                                <tr>
+                                    <td>{{emprunt.abonne.pseudo}}</td>
+                                    <td>{{emprunt.dateEmprunt|date("d/m/Y")}}</td>
+                                    <td>{% if emprunt.dateRetour is not null %}
+                                            {{emprunt.dateRetour|date("d/m/Y")}}
+                                        {% else %}
+                                            À rendre
+                                        {% endif %}
+                                    </td>
+                                    {# <td>{{emprunt.dateRetour|date("d/m/Y")}}</td> #}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+    </table>
+
+
+    <a href="{{ path('livre') }}">Retour sur la liste des livre</a>
+
+    <a href="{{ path("livre_modifier", {"id": livre.id }) }}">Modifier</a>
+
+    <a href="{{ path("livre_supprimer", {"id": livre.id }) }}">Supprimer</a>
+
+{% endblock %}

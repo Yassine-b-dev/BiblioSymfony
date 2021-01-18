@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des emprunts{% endblock %}
+{% block h1 %}Liste des emprunts{% endblock %}
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Abonne</th>
+                <th>Livre</th>
+                <th>Date d'emprunt</th>
+                <th>Date de retour</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprunt in emprunts %}
+            <tr>
+                <td>{{ emprunt.abonne.pseudo }}</td>
+                <td>{{ emprunt.livre.titre ~ " de " ~ emprunt.livre.auteur}}</td>
+                <td>{{ emprunt.dateEmprunt|date("d/m/Y") }}</td>
+                <td>{{ emprunt.dateRetour|date("d/m/Y")  }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Il n'y a pas d'emprunt la bibliotèque semble déserte</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
